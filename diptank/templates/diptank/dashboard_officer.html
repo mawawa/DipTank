@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Officer Dashboard</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f0f2f5; /* Light gray background */
+            color: #333;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            min-height: 100vh;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+        .container {
+            background-color: #ffffff;
+            padding: 2.5rem;
+            border-radius: 1rem;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 700px;
+            text-align: center;
+            margin-top: 30px;
+        }
+        h1 {
+            color: #2c3e50;
+            margin-bottom: 1.5rem;
+            font-size: 2.5rem;
+            font-weight: 700;
+        }
+        p {
+            font-size: 1.1em;
+            color: #555;
+            margin-bottom: 1rem;
+        }
+        .data-card {
+            background-color: #f8f9fa;
+            border: 1px solid #e9ecef;
+            border-radius: 0.75rem;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+            text-align: left;
+        }
+        .data-card h2 {
+            color: #34495e;
+            font-size: 1.8rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+        .data-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 0.5rem 0;
+            border-bottom: 1px dashed #dee2e6;
+        }
+        .data-item:last-child {
+            border-bottom: none;
+        }
+        .data-label {
+            font-weight: 600;
+            color: #495057;
+        }
+        .data-value {
+            color: #212529;
+        }
+        .status-optimal { color: #28a745; font-weight: bold; } /* Green */
+        .status-low { color: #ffc107; font-weight: bold; }    /* Yellow */
+        .status-high { color: #dc3545; font-weight: bold; }   /* Red */
+        .status-error { color: #6c757d; font-weight: bold; }  /* Gray */
+
+        .nav-button {
+            display: inline-block;
+            padding: 0.75rem 1.5rem;
+            background-color: #3b82f6;
+            color: white;
+            text-decoration: none;
+            border-radius: 0.5rem;
+            font-weight: 600;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            margin-top: 2.5rem;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+        .nav-button:hover {
+            background-color: #2563eb;
+            transform: translateY(-2px);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Welcome, Officer!</h1>
+        <p>This is your administrative dashboard. Manage dip tank operations, view reports, and oversee farmer data.</p>
+
+        <div class="data-card">
+            <h2>Dipping Solution Pump Status</h2>
+            <div class="data-item">
+                <span class="data-label">Current Level:</span>
+                <span class="data-value">{{ pump_data.current_level }}%</span>
+            </div>
+            <div class="data-item">
+                <span class="data-label">Minimum Threshold:</span>
+                <span class="data-value">{{ pump_data.min_threshold }}%</span>
+            </div>
+            <div class="data-item">
+                <span class="data-label">Maximum Threshold:</span>
+                <span class="data-value">{{ pump_data.max_threshold }}%</span>
+            </div>
+            <div class="data-item">
+                <span class="data-label">Status:</span>
+                <span class="data-value status-{{ pump_data.status|lower }}">{{ pump_data.status }}</span>
+            </div>
+            <div class="data-item">
+                <span class="data-label">Last Checked:</span>
+                <span class="data-value">{{ pump_data.last_checked }}</span>
+            </div>
+            <p class="mt-4 text-gray-700 font-medium">{{ pump_data.message }}</p>
+        </div>
+
+        <a href="/" class="nav-button">Go to Home</a>
+    </div>
+</body>
+</html>
+

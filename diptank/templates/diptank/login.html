@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Register</title>
+    <title>Login</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
@@ -16,13 +16,13 @@
             min-height: 100vh;
             margin: 0;
         }
-        .register-container {
+        .login-container {
             background-color: #ffffff;
             padding: 2.5rem;
             border-radius: 1rem;
             box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
             width: 100%;
-            max-width: 450px;
+            max-width: 400px;
             text-align: center;
         }
         h1 {
@@ -42,7 +42,6 @@
             color: #495057;
         }
         form input[type="text"],
-        form input[type="email"],
         form input[type="password"] {
             width: calc(100% - 20px); /* Adjust for padding */
             padding: 10px;
@@ -74,6 +73,11 @@
             margin-top: 0.5rem;
             font-size: 0.9em;
         }
+        .note {
+            color: #757575;
+            font-size: 0.9em;
+            margin-top: 15px;
+        }
         .navbar { /* Basic styling for navigation, can be moved to a base template */
             position: absolute;
             top: 20px;
@@ -104,17 +108,17 @@
         <a href="/login/">Login</a>
         <a href="/logout/">Logout</a>
     </div>
-    <br>
-    <div class="register-container">
-            <br>
-    <br>
-
-        <h1>Register for Diptank</h1>
+    <div class="login-container">
+        <h1>Diptank Login</h1>
         <form method="post">
             {% csrf_token %}
-            {{ form.as_p }} {# Renders form fields as paragraphs #}
-            <button type="submit">Sign Up</button>
+            {{ form.as_p }}
+            {% if error_message %}
+                <p class="errorlist">{{ error_message }}</p>
+            {% endif %}
+            <button type="submit">Login</button>
         </form>
+        <p class="note">Hint: Try username 'farmer' or 'officer' with password 'pass'</p>
     </div>
 </body>
 </html>
