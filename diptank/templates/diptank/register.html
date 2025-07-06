@@ -43,7 +43,8 @@
         }
         form input[type="text"],
         form input[type="email"],
-        form input[type="password"] {
+        form input[type="password"],
+        form select { /* Added styling for select */
             width: calc(100% - 20px); /* Adjust for padding */
             padding: 10px;
             border: 1px solid #ced4da;
@@ -67,12 +68,19 @@
             background-color: #2563eb;
             transform: translateY(-2px);
         }
+        /* Specific styling for help text and errors */
+        .helptext {
+            color: #6b7280; /* Tailwind gray-500 */
+            font-size: 0.875rem; /* Tailwind text-sm */
+            margin-top: 0.25rem; /* Tailwind mt-1 */
+            display: block; /* Ensure it takes its own line */
+        }
         .errorlist {
-            color: #dc3545;
+            color: #ef4444; /* Tailwind red-500 */
             list-style-type: none;
             padding: 0;
             margin-top: 0.5rem;
-            font-size: 0.9em;
+            font-size: 0.875rem; /* Tailwind text-sm */
         }
         .navbar { /* Basic styling for navigation, can be moved to a base template */
             position: absolute;
@@ -104,15 +112,31 @@
         <a href="/login/">Login</a>
         <a href="/logout/">Logout</a>
     </div>
-    <br>
     <div class="register-container">
-            <br>
-    <br>
-
+        <br>
+        <br>
         <h1>Register for Diptank</h1>
         <form method="post">
             {% csrf_token %}
-            {{ form.as_p }} {# Renders form fields as paragraphs #}
+            {% for field in form %}
+                <div class="mb-4">
+                    <label for="{{ field.id_for_label }}" class="block text-gray-700 text-sm font-bold mb-2">{{ field.label }}:</label>
+                    {{ field }}
+                    {% if field.help_text %}
+                        <p class="helptext">{{ field.help_text }}</p>
+                    {% endif %}
+                    {% for error in field.errors %}
+                        <p class="errorlist">{{ error }}</p>
+                    {% endfor %}
+                </div>
+            {% endfor %}
+            {% if form.non_field_errors %}
+                <div class="errorlist text-red-500 text-xs italic mb-4">
+                    {% for error in form.non_field_errors %}
+                        <p>{{ error }}</p>
+                    {% endfor %}
+                </div>
+            {% endif %}
             <button type="submit">Sign Up</button>
         </form>
     </div>

@@ -103,13 +103,13 @@
 <body>
     <div class="container">
         <h1>Welcome, Farmer!</h1>
-        <p>This is your personalized dashboard. Here you can access your livestock records, dip schedules, and more.</p>
+        <p>This is your personalized dashboard. Here you can access water levels</p>
 
         <div class="progress-section">
-            <h2 class="text-2xl font-semibold text-gray-700 mb-4">Your Dipping Progress</h2>
+            <h2 class="text-2xl font-semibold text-gray-700 mb-4">Water level</h2>
             <div class="progress-container">
                 <div class="progress-bar {{ progress_level }}">
-                    {{ progress_level|capfirst }} Progress
+                    {{ progress_level|capfirst }}
                 </div>
             </div>
             <p class="progress-message">{{ progress_message }}</p>
