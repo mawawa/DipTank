@@ -1,3 +1,4 @@
+<!-- diptank/templates/diptank/dashboard_farmer.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,7 +10,7 @@
     <style>
         body {
             font-family: 'Inter', sans-serif;
-            background-color: #f0f2f5; /* Light gray background */
+            background-color: #f0f2f5;
             color: #333;
             display: flex;
             flex-direction: column;
@@ -21,98 +22,160 @@
         }
         .container {
             background-color: #ffffff;
-            padding: 2.5rem; /* Increased padding */
-            border-radius: 1rem; /* More rounded corners */
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1); /* Stronger shadow */
+            padding: 2.5rem;
+            border-radius: 1rem;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
             width: 100%;
-            max-width: 700px; /* Increased max-width */
+            max-width: 800px; /* Increased max-width for more content */
             text-align: center;
-            margin-top: 30px; /* Space from top */
+            margin-top: 30px;
         }
         h1 {
-            color: #2c3e50; /* Darker heading */
-            margin-bottom: 1.5rem; /* More space below heading */
-            font-size: 2.5rem; /* Larger heading */
-            font-weight: 700; /* Bold */
+            color: #2c3e50;
+            margin-bottom: 1.5rem;
+            font-size: 2.5rem;
+            font-weight: 700;
         }
         p {
             font-size: 1.1em;
             color: #555;
             margin-bottom: 1rem;
         }
-        .progress-section {
-            margin-top: 2.5rem; /* More space above progress */
-            margin-bottom: 2rem;
+        .section-card {
+            background-color: #f8f9fa;
+            border: 1px solid #e9ecef;
+            border-radius: 0.75rem;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+            text-align: left;
         }
-        .progress-container {
-            width: 90%; /* Wider progress bar */
+        .section-card h2 {
+            color: #34495e;
+            font-size: 1.8rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+        .water-bar-container {
+            width: 90%;
             background-color: #e0e0e0;
-            border-radius: 9999px; /* Fully rounded */
-            height: 25px; /* Slightly taller */
+            border-radius: 9999px;
+            height: 25px;
             overflow: hidden;
-            margin: 1.5rem auto 1rem auto; /* More margin */
-            box-shadow: inset 0 1px 3px rgba(0,0,0,0.1); /* Inner shadow */
+            margin: 1.5rem auto 1rem auto;
+            box-shadow: inset 0 1px 3px rgba(0,0,0,0.1);
         }
-        .progress-bar {
+        .water-bar {
             height: 100%;
             border-radius: 9999px;
             text-align: center;
             line-height: 25px;
             color: white;
-            font-weight: 600; /* Semi-bold */
-            transition: width 0.7s ease-in-out, background-color 0.7s ease-in-out; /* Smoother transition */
+            font-weight: 600;
+            transition: width 0.7s ease-in-out, background-color 0.7s ease-in-out;
             font-size: 0.9em;
         }
-        .progress-bar.low {
-            width: 30%;
-            background-color: #ef4444; /* Tailwind red-500 */
+        /* Water Level Colors */
+        .water-bar.critical {
+            background-color: #dc2626; /* Red-600 */
         }
-        .progress-bar.medium {
-            width: 60%;
-            background-color: #facc15; /* Tailwind yellow-400 */
-            color: #333;
+        .water-bar.low {
+            background-color: #fbbf24; /* Amber-400 */
         }
-        .progress-bar.high {
-            width: 90%;
-            background-color: #22c55e; /* Tailwind green-500 */
+        .water-bar.available {
+            background-color: #3b82f6; /* Blue-500 */
         }
-        .progress-message {
+        .water-message {
             margin-top: 1rem;
-            font-size: 1.15em; /* Slightly larger message */
+            font-size: 1.15em;
             color: #444;
             font-weight: 600;
+            text-align: center;
         }
         .nav-button {
             display: inline-block;
             padding: 0.75rem 1.5rem;
-            background-color: #3b82f6; /* Tailwind blue-500 */
+            background-color: #3b82f6;
             color: white;
             text-decoration: none;
-            border-radius: 0.5rem; /* Rounded button */
+            border-radius: 0.5rem;
             font-weight: 600;
             transition: background-color 0.3s ease, transform 0.2s ease;
-            margin-top: 2.5rem; /* More space above button */
+            margin-top: 2.5rem;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
         }
         .nav-button:hover {
-            background-color: #2563eb; /* Darker blue on hover */
-            transform: translateY(-2px); /* Slight lift effect */
+            background-color: #2563eb;
+            transform: translateY(-2px);
         }
+        .tank-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+        .tank-card {
+            background-color: #ffffff;
+            border: 1px solid #e0e0e0;
+            border-radius: 0.75rem;
+            padding: 1rem;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+            text-align: center;
+        }
+        .tank-card h3 {
+            font-size: 1.4rem;
+            font-weight: 600;
+            color: #2c3e50;
+            margin-bottom: 0.75rem;
+        }
+        .tank-detail {
+            font-size: 0.95em;
+            color: #555;
+            margin-bottom: 0.5rem;
+        }
+        .tank-bar-container {
+            width: 80%;
+            background-color: #e0e0e0;
+            border-radius: 9999px;
+            height: 20px;
+            overflow: hidden;
+            margin: 1rem auto 0.5rem auto;
+            box-shadow: inset 0 1px 3px rgba(0,0,0,0.1);
+        }
+        .tank-bar {
+            height: 100%;
+            border-radius: 9999px;
+            text-align: center;
+            line-height: 20px;
+            color: white;
+            font-weight: 600;
+            transition: width 0.7s ease-in-out, background-color 0.7s ease-in-out;
+            font-size: 0.8em;
+        }
+        .tank-bar.critical { background-color: #ef4444; } /* Red */
+        .tank-bar.low { background-color: #facc15; color: #333; } /* Yellow */
+        .tank-bar.available { background-color: #3b82f6; } /* Blue */
     </style>
 </head>
 <body>
     <div class="container">
         <h1>Welcome, Farmer!</h1>
-        <p>This is your personalized dashboard. Here you can access water levels</p>
+        <p>This is your personalized dashboard. Here you can monitor the water levels of your diptanks at {{ farmer_location }}.</p>
 
-        <div class="progress-section">
-            <h2 class="text-2xl font-semibold text-gray-700 mb-4">Water level</h2>
-            <div class="progress-container">
-                <div class="progress-bar {{ progress_level }}">
-                    {{ progress_level|capfirst }}
+        <div class="section-card">
+            <h2>Overall Water Levels at {{ farmer_location }}</h2>
+            {% if total_tank_capacity > 0 %}
+                <div class="water-bar-container">
+                    <div class="water-bar {{ total_water_availability_status|lower }}" style="width: {{ total_water_percentage }}%;">
+                        {{ total_water_percentage|floatformat:0 }}%
+                    </div>
                 </div>
-            </div>
-            <p class="progress-message">{{ progress_message }}</p>
+                <p class="water-message">{{ total_water_message }}</p>
+                <p class="text-gray-600 text-sm mt-2">Total Volume: {{ total_current_water_volume|floatformat:2 }} Liters / Total Capacity: {{ total_tank_capacity|floatformat:2 }} Liters</p>
+            {% else %}
+                <p class="text-gray-600 text-lg mt-4">No tanks found at your associated location ({{ farmer_location }}). Please contact an officer to register tanks for this location.</p>
+            {% endif %}
         </div>
 
         <a href="/" class="nav-button">Go to Home</a>

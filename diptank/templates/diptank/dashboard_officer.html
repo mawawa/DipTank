@@ -1,3 +1,4 @@
+<!-- diptank/templates/diptank/dashboard_officer.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -25,7 +26,7 @@
             border-radius: 1rem;
             box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
             width: 100%;
-            max-width: 700px;
+            max-width: 900px; /* Increased max-width for more content */
             text-align: center;
             margin-top: 30px;
         }
@@ -40,7 +41,7 @@
             color: #555;
             margin-bottom: 1rem;
         }
-        .data-card {
+        .section-card {
             background-color: #f8f9fa;
             border: 1px solid #e9ecef;
             border-radius: 0.75rem;
@@ -49,33 +50,28 @@
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
             text-align: left;
         }
-        .data-card h2 {
+        .section-card h2 {
             color: #34495e;
             font-size: 1.8rem;
             font-weight: 600;
             margin-bottom: 1rem;
+            text-align: center;
         }
-        .data-item {
-            display: flex;
-            justify-content: space-between;
-            padding: 0.5rem 0;
-            border-bottom: 1px dashed #dee2e6;
-        }
-        .data-item:last-child {
-            border-bottom: none;
-        }
-        .data-label {
+        .message {
+            padding: 0.75rem;
+            border-radius: 0.5rem;
+            margin-bottom: 1rem;
             font-weight: 600;
-            color: #495057;
+            text-align: center;
         }
-        .data-value {
-            color: #212529;
+        .message.success {
+            background-color: #d1fae5; /* Green-100 */
+            color: #065f46; /* Green-800 */
         }
-        .status-optimal { color: #28a745; font-weight: bold; } /* Green */
-        .status-low { color: #ffc107; font-weight: bold; }    /* Yellow */
-        .status-high { color: #dc3545; font-weight: bold; }   /* Red */
-        .status-error { color: #6c757d; font-weight: bold; }  /* Gray */
-
+        .message.error {
+            background-color: #fee2e2; /* Red-100 */
+            color: #991b1b; /* Red-800 */
+        }
         .nav-button {
             display: inline-block;
             padding: 0.75rem 1.5rem;
@@ -92,6 +88,125 @@
             background-color: #2563eb;
             transform: translateY(-2px);
         }
+        .tank-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+        .tank-card {
+            background-color: #ffffff;
+            border: 1px solid #e0e0e0;
+            border-radius: 0.75rem;
+            padding: 1.5rem;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+            text-align: left;
+        }
+        .tank-card h3 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #2c3e50;
+            margin-bottom: 1rem;
+        }
+        .tank-detail-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 0.4rem 0;
+            border-bottom: 1px dashed #e9ecef;
+        }
+        .tank-detail-item:last-of-type {
+            border-bottom: none;
+        }
+        .tank-label {
+            font-weight: 600;
+            color: #495057;
+        }
+        .tank-value {
+            color: #212529;
+        }
+        .status-optimal { color: #28a745; font-weight: bold; }
+        .status-low { color: #ffc107; font-weight: bold; }
+        .status-high { color: #dc3545; font-weight: bold; }
+
+        .threshold-form div {
+            margin-bottom: 0.75rem;
+        }
+        .threshold-form label {
+            display: block;
+            margin-bottom: 0.25rem;
+            font-weight: 600;
+            color: #495057;
+            font-size: 0.9em;
+        }
+        .threshold-form input {
+            width: calc(100% - 20px);
+            padding: 8px;
+            border: 1px solid #ced4da;
+            border-radius: 0.5rem;
+            font-size: 0.9em;
+            box-sizing: border-box;
+        }
+        .threshold-form button {
+            padding: 0.5rem 1rem;
+            background-color: #10b981; /* Green-500 */
+            color: white;
+            border: none;
+            border-radius: 0.5rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            margin-top: 1rem;
+            width: 100%;
+        }
+        .threshold-form button:hover {
+            background-color: #059669; /* Green-600 */
+        }
+
+        /* Styles for Tank Registration Form */
+        .tank-registration-form label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: #495057;
+        }
+        .tank-registration-form input,
+        .tank-registration-form select {
+            width: calc(100% - 20px); /* Adjust for padding */
+            padding: 10px;
+            border: 1px solid #ced4da;
+            border-radius: 0.5rem;
+            font-size: 1em;
+            box-sizing: border-box;
+        }
+        .tank-registration-form button {
+            padding: 0.75rem 1.5rem;
+            background-color: #3b82f6;
+            color: white;
+            border: none;
+            border-radius: 0.5rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            margin-top: 1.5rem;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+        .tank-registration-form button:hover {
+            background-color: #2563eb;
+            transform: translateY(-2px);
+        }
+        .tank-registration-form .helptext {
+            color: #6b7280; /* Tailwind gray-500 */
+            font-size: 0.875rem; /* Tailwind text-sm */
+            margin-top: 0.25rem; /* Tailwind mt-1 */
+            display: block; /* Ensure it takes its own line */
+        }
+        .tank-registration-form .errorlist {
+            color: #ef4444; /* Tailwind red-500 */
+            list-style-type: none;
+            padding: 0;
+            margin-top: 0.5rem;
+            font-size: 0.875rem; /* Tailwind text-sm */
+        }
     </style>
 </head>
 <body>
@@ -99,33 +214,85 @@
         <h1>Welcome, Officer!</h1>
         <p>This is your administrative dashboard. Manage dip tank operations, view reports, and oversee farmer data.</p>
 
-        <div class="data-card">
-            <h2>Dipping Solution Pump Status</h2>
-            <div class="data-item">
-                <span class="data-label">Current Level:</span>
-                <span class="data-value">{{ pump_data.current_level }}%</span>
+        {% if message %}
+            <div class="message {{ message_type }}">
+                {{ message }}
             </div>
-            <div class="data-item">
-                <span class="data-label">Minimum Threshold:</span>
-                <span class="data-value">{{ pump_data.min_threshold }}%</span>
-            </div>
-            <div class="data-item">
-                <span class="data-label">Maximum Threshold:</span>
-                <span class="data-value">{{ pump_data.max_threshold }}%</span>
-            </div>
-            <div class="data-item">
-                <span class="data-label">Status:</span>
-                <span class="data-value status-{{ pump_data.status|lower }}">{{ pump_data.status }}</span>
-            </div>
-            <div class="data-item">
-                <span class="data-label">Last Checked:</span>
-                <span class="data-value">{{ pump_data.last_checked }}</span>
-            </div>
-            <p class="mt-4 text-gray-700 font-medium">{{ pump_data.message }}</p>
+        {% endif %}
+
+        <div class="section-card">
+            <h2>Register New Diptank</h2>
+            <form method="post" class="tank-registration-form">
+                {% csrf_token %}
+                {# Display TankForm fields, excluding 'owner' #}
+                {% for field in tank_form %}
+                    {% if field.name != 'owner' %} {# Exclude the owner field from the form display #}
+                        <div class="mb-4">
+                            <label for="{{ field.id_for_label }}" class="block text-gray-700 text-sm font-bold mb-2">{{ field.label }}:</label>
+                            {{ field }}
+                            {% if field.help_text %}
+                                <p class="helptext">{{ field.help_text }}</p>
+                            {% endif %}
+                            {% for error in field.errors %}
+                                <p class="errorlist">{{ error }}</p>
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                {% endfor %}
+                {% if tank_form.non_field_errors %}
+                    <div class="errorlist text-red-500 text-xs italic mb-4">
+                        {% for error in tank_form.non_field_errors %}
+                            <p>{{ error }}</p>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+                <button type="submit" name="register_tank">Register Tank</button>
+            </form>
+        </div>
+
+        <div class="section-card">
+            <h2>All Diptanks Overview</h2>
+            {% if tanks_data %}
+                <div class="tank-grid">
+                    {% for tank in tanks_data %}
+                        <div class="tank-card">
+                            <h3>Tank #{{ tank.tank_id }} - {{ tank.location }}</h3>
+                            {# Removed owner_name display as tanks are no longer directly owned by UserProfile #}
+                            <div class="tank-detail-item">
+                                <span class="tank-label">Current Level:</span>
+                                <span class="tank-value">{{ tank.current_level|floatformat:2 }} L ({{ tank.percentage|floatformat:0 }}%)</span>
+                            </div>
+                            <div class="tank-detail-item">
+                                <span class="tank-label">Capacity:</span>
+                                <span class="tank-value">{{ tank.capacity|floatformat:2 }} L</span>
+                            </div>
+                            <div class="tank-detail-item">
+                                <span class="tank-label">Status:</span>
+                                <span class="tank-value status-{{ tank.status|lower }}">{{ tank.status }}</span>
+                            </div>
+
+                            <form method="post" class="threshold-form mt-4">
+                                {% csrf_token %}
+                                <input type="hidden" name="tank_id" value="{{ tank.tank_id }}">
+                                <div>
+                                    <label for="min_threshold_{{ tank.tank_id }}">Min Threshold (%):</label>
+                                    <input type="number" id="min_threshold_{{ tank.tank_id }}" name="min_threshold" value="{{ tank.min_threshold|floatformat:0 }}" min="0" max="100" step="any" required>
+                                </div>
+                                <div>
+                                    <label for="max_threshold_{{ tank.tank_id }}">Max Threshold (%):</label>
+                                    <input type="number" id="max_threshold_{{ tank.tank_id }}" name="max_threshold" value="{{ tank.max_threshold|floatformat:0 }}" min="0" max="100" step="any" required>
+                                </div>
+                                <button type="submit" name="update_thresholds">Update Thresholds</button>
+                            </form>
+                        </div>
+                    {% endfor %}
+                </div>
+            {% else %}
+                <p class="text-gray-600 text-lg mt-4">No diptanks registered yet. Use the form above to add a new tank.</p>
+            {% endif %}
         </div>
 
         <a href="/" class="nav-button">Go to Home</a>
     </div>
 </body>
 </html>
-
