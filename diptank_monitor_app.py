@@ -577,8 +577,10 @@ class DiptankMonitorApp:
             time.sleep(PUMP_UPDATE_INTERVAL)
 
 
-# --- Main application entry point ---
+# --- Main application entry point. ---
 if __name__ == "__main__":
     root = tk.Tk()
     app = DiptankMonitorApp(root)
     root.mainloop()
+
+
